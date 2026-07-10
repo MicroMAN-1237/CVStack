@@ -1,0 +1,59 @@
+.cv-builder-section {
+  padding: 50px 0 80px;
+}
+
+.section-sub {
+  color: var(--gray);
+  margin-bottom: 32px;
+}
+
+.cv-form {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  background: var(--light-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+
+.cv-form label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+
+.cv-form label:first-child {
+  margin-top: 0;
+}
+
+.cv-form input,
+.cv-form textarea {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.cv-form input:focus,
+.cv-form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.cv-message {
+  margin-top: 16px;
+  font-size: 14px;
+  max-width: 600px;
+}
+
+.cv-message.error {
+  color: #dc2626;
+}
+
+.cv-message.success {
+  color: #16a34a;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Your CV — CVStack</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/build-cv.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">CV<span>Stack</span></a>
+      <a href="dashboard.html" class="btn btn-outline">Back to Dashboard</a>
+    </div>
+  </header>
+
+  <section class="cv-builder-section">
+    <div class="container">
+      <h1>Build Your CV</h1>
+      <p class="section-sub">Fill in your details below. You can edit this later.</p>
+
+      <form id="cv-form" class="cv-form">
+        <label for="full_name">Full Name</label>
+        <input type="text" id="full_name" required placeholder="e.g. Abdou Benali">
+
+        <label for="job_title">Job Title</label>
+        <input type="text" id="job_title" required placeholder="e.g. Backend Developer">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required placeholder="e.g. abdou@email.com">
+
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" placeholder="e.g. +213 555 123 456">
+
+        <label for="skills">Skills</label>
+        <textarea id="skills" rows="3" placeholder="e.g. JavaScript, Python, SQL, Docker"></textarea>
+
+        <label for="experience">Experience</label>
+        <textarea id="experience" rows="5" placeholder="Describe your past jobs and projects"></textarea>
+
+        <button type="submit" class="btn btn-primary btn-block">Save CV</button>
+      </form>
+
+      <p id="cv-message" class="cv-message"></p>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cv-builder.js"></script>
+
+</body>
+</html>

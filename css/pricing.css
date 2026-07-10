@@ -1,0 +1,51 @@
+.pricing-section {
+  padding: 60px 0 100px;
+  text-align: center;
+}
+
+.pricing-section .section-sub {
+  color: var(--gray);
+  margin-bottom: 40px;
+}
+
+.price-card {
+  background: var(--light-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.price-amount {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+.price-amount span {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--gray);
+}
+
+.price-features {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.price-features li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.price-features li:last-child {
+  border-bottom: none;
+}
+
+.checkout-message {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--gray);
+}

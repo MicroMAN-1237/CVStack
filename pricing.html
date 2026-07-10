@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscribe — CVStack</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/pricing.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">CV<span>Stack</span></a>
+      <a href="dashboard.html" class="btn btn-outline">Back to Dashboard</a>
+    </div>
+  </header>
+
+  <section class="pricing-section">
+    <div class="container">
+      <h1>Subscribe to CVStack</h1>
+      <p class="section-sub">Get full access to the CV builder for one simple monthly price.</p>
+
+      <div class="price-card">
+        <p class="price-amount">$9.99<span>/month</span></p>
+        <ul class="price-features">
+          <li>Unlimited CV editing</li>
+          <li>PDF download</li>
+          <li>Cancel anytime</li>
+        </ul>
+        <button id="checkout-btn" class="btn btn-primary btn-block">Subscribe Now</button>
+        <p id="checkout-message" class="checkout-message"></p>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/checkout.js"></script>
+
+</body>
+</html>

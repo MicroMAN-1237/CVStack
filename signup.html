@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إنشاء حساب — CVStack</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="logo">CV<span>Stack</span></a>
+    </div>
+  </header>
+
+  <section class="auth-section">
+    <div class="auth-card">
+      <h1>إنشاء حساب جديد</h1>
+      <p class="auth-sub">ابدأ ببناء سيرتك الذاتية التقنية الآن</p>
+
+      <form id="signup-form">
+        <label for="signup-email">البريد الإلكتروني</label>
+        <input type="email" id="signup-email" required placeholder="example@email.com">
+
+        <label for="signup-password">كلمة المرور</label>
+        <input type="password" id="signup-password" required minlength="6" placeholder="6 أحرف على الأقل">
+
+        <button type="submit" class="btn btn-primary btn-block">إنشاء الحساب</button>
+      </form>
+
+      <p id="auth-message" class="auth-message"></p>
+
+      <div id="confirm-box" class="confirm-box" style="display:none;"></div>
+
+      <p class="auth-switch">
+        عندك حساب؟ <a href="login.html">سجل الدخول</a>
+      </p>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById("signup-form").addEventListener("submit", handleSignup);
+  </script>
+
+</body>
+</html>
