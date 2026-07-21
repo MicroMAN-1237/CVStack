@@ -35,7 +35,7 @@ exports.handler = async function (event) {
         "Content-Type": "application/json",
         "Prefer": "return=representation",
       },
-      body: JSON.stringify({ is_subscribed: true }),
+      body: JSON.stringify({ is_subscription: true }),
     });
 
     const responseText = await updateResponse.text();
