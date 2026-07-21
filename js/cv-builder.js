@@ -2,7 +2,7 @@
 
 let currentUser = null;
 
-// Step 1: check user is logged in, and load existing CV if it exists
+// Step 1: check user is logged in AND subscribed, then load existing CV if it exists
 async function initCvBuilder() {
   const { data: { session } } = await supabaseClient.auth.getSession();
 
@@ -13,21 +13,28 @@ async function initCvBuilder() {
 
   currentUser = session.user;
 
-  // try to load an existing CV for this user
-  const { data, error } = await supabaseClient
+  // check subscription status before allowing access
+  const { data: cvRow } = await supabaseClient
     .from("cvs")
     .select("*")
     .eq("user_id", currentUser.id)
     .maybeSingle();
 
-  if (data) {
-    // fill the form with existing data
-    document.getElementById("full_name").value = data.full_name || "";
-    document.getElementById("job_title").value = data.job_title || "";
-    document.getElementById("email").value = data.email || "";
-    document.getElementById("phone").value = data.phone || "";
-    document.getElementById("skills").value = data.skills || "";
-    document.getElementById("experience").value = data.experience || "";
+  const isSubscribed = cvRow && cvRow.is_subscription === true;
+
+  if (!isSubscribed) {
+    window.location.href = "pricing.html";
+    return;
+  }
+
+  // fill the form with existing data, since we already fetched it above
+  if (cvRow) {
+    document.getElementById("full_name").value = cvRow.full_name || "";
+    document.getElementById("job_title").value = cvRow.job_title || "";
+    document.getElementById("email").value = cvRow.email || "";
+    document.getElementById("phone").value = cvRow.phone || "";
+    document.getElementById("skills").value = cvRow.skills || "";
+    document.getElementById("experience").value = cvRow.experience || "";
   }
 }
 

@@ -14,6 +14,13 @@ async function loadCv() {
     .eq("user_id", session.user.id)
     .maybeSingle();
 
+  const isSubscribed = data && data.is_subscription === true;
+
+  if (!isSubscribed) {
+    window.location.href = "pricing.html";
+    return;
+  }
+
   const cvPaper = document.getElementById("cv-paper");
 
   if (error || !data || !data.full_name) {
