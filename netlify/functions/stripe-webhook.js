@@ -27,15 +27,15 @@ exports.handler = async function (event) {
     console.log("SUPABASE_URL present:", !!supabaseUrl);
     console.log("SUPABASE_SERVICE_ROLE_KEY present:", !!supabaseServiceKey);
 
-    const updateResponse = await fetch(`${supabaseUrl}/rest/v1/cvs?user_id=eq.${userId}`, {
-      method: "PATCH",
+    const updateResponse = await fetch(`${supabaseUrl}/rest/v1/cvs?on_conflict=user_id`, {
+      method: "POST",
       headers: {
         "apikey": supabaseServiceKey,
         "Authorization": `Bearer ${supabaseServiceKey}`,
         "Content-Type": "application/json",
-        "Prefer": "return=representation",
+        "Prefer": "resolution=merge-duplicates,return=representation",
       },
-      body: JSON.stringify({ is_subscription: true }),
+      body: JSON.stringify({ user_id: userId, is_subscription: true }),
     });
 
     const responseText = await updateResponse.text();
