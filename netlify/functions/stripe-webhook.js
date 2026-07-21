@@ -8,28 +8,39 @@ exports.handler = async function (event) {
   }
 
   const stripeEvent = JSON.parse(event.body);
+  console.log("Webhook received event type:", stripeEvent.type);
 
-  // We only care about one event type: a checkout that finished successfully
   if (stripeEvent.type === "checkout.session.completed") {
     const session = stripeEvent.data.object;
     const userId = session.client_reference_id;
 
-    if (userId) {
-      const supabaseUrl = process.env.SUPABASE_URL;
-      const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    console.log("client_reference_id (userId):", userId);
 
-      // update the user's row: mark as subscribed
-      await fetch(`${supabaseUrl}/rest/v1/cvs?user_id=eq.${userId}`, {
-        method: "PATCH",
-        headers: {
-          "apikey": supabaseServiceKey,
-          "Authorization": `Bearer ${supabaseServiceKey}`,
-          "Content-Type": "application/json",
-          "Prefer": "return=minimal",
-        },
-        body: JSON.stringify({ is_subscribed: true }),
-      });
+    if (!userId) {
+      console.log("No userId found on session, cannot update Supabase.");
+      return { statusCode: 200, body: "ok, but no userId" };
     }
+
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+    console.log("SUPABASE_URL present:", !!supabaseUrl);
+    console.log("SUPABASE_SERVICE_ROLE_KEY present:", !!supabaseServiceKey);
+
+    const updateResponse = await fetch(`${supabaseUrl}/rest/v1/cvs?user_id=eq.${userId}`, {
+      method: "PATCH",
+      headers: {
+        "apikey": supabaseServiceKey,
+        "Authorization": `Bearer ${supabaseServiceKey}`,
+        "Content-Type": "application/json",
+        "Prefer": "return=representation",
+      },
+      body: JSON.stringify({ is_subscribed: true }),
+    });
+
+    const responseText = await updateResponse.text();
+    console.log("Supabase update status:", updateResponse.status);
+    console.log("Supabase update response:", responseText);
   }
 
   return { statusCode: 200, body: "ok" };
